@@ -35,7 +35,7 @@ const Form = (props) => {
         label="Name"
         value={props.contactDetail.name}
         variant="outlined"
-        fullWidth={true}
+        // fullWidth={true}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -60,7 +60,7 @@ const Form = (props) => {
         type={"number"}
         label="Number"
         variant="outlined"
-        fullWidth={true}
+        // fullWidth={true}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
