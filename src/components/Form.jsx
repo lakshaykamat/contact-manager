@@ -1,39 +1,33 @@
-import {
-  Button,
-  ImageList,
-  ImageListItem,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { Box, Container, Stack } from "@mui/system";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Alert, Button, InputAdornment, TextField, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonIcon from "@mui/icons-material/Person";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Form = (props) => {
+const Form = ({ name, number,alert,setAlert, handleChange, handleContactList }) => {
   return (
     <Stack
       spacing={3}
       justifyContent="center"
       alignItems="center"
       maxWidth={"sm"}
-      sx={{ margin: "1rem auto" }}
+      sx={{ margin: "5rem auto" }}
     >
       <Typography variant="h3" sx={{ textAlign: "center" }}>
         Contact Manager
       </Typography>
 
       <TextField
-        onChange={props.handleChange}
+        onChange={handleChange}
         name="name"
+        error={name.length >= 1 ? false : true}
+        helperText={name.length >= 1 ? "" : "Enter Name"}
         id="name"
         type={"text"}
         label="Name"
-        value={props.contactDetail.name}
+        value={name}
         variant="outlined"
         // fullWidth={true}
         InputProps={{
@@ -46,17 +40,18 @@ const Form = (props) => {
       />
 
       <TextField
-        onChange={props.handleChange}
-        error={
-          props.contactDetail.number.length >= 1
-            ? props.contactDetail.number.length == 10
-              ? false
-              : true
-            : false
+        onChange={handleChange}
+        error={number.length >= 1 && number.length == 10 ? false : true}
+        helperText={
+          number.length >= 1 && number.length == 10
+            ? ""
+            : number.length <= 10
+            ? `Enter ${10 - number.length} more digits`
+            : `Remove ${number.length - 10} Digits`
         }
         name="number"
         id="number"
-        value={props.contactDetail.number}
+        value={number}
         type={"number"}
         label="Number"
         variant="outlined"
@@ -72,17 +67,16 @@ const Form = (props) => {
 
       {
         <Button
-          onClick={props.handleContactList}
+          onClick={handleContactList}
           variant="contained"
           size="large"
-          disabled={props.contactDetail.number.length == 10 ? false : true}>
+          disabled={number.length == 10 && name.length > 0 ? false : true}
+        >
           <PersonAddIcon sx={{ marginRight: ".7rem" }} />
-          Add to Contact
+          Add to Contacts
         </Button>
       }
-      <Link to={"/contacts"}>
-        <Button variant="outlined" size="large">All Contacts</Button>
-      </Link>
+      {alert && <Alert severity="success" variant="filled">Added to List</Alert>}
     </Stack>
   );
 };
