@@ -51,7 +51,6 @@ function App() {
               />
               <Form
                 alert={alert}
-                setAlert={setAlert}
                 handleContactList={handleContactList}
                 handleChange={handleChange}
                 name={contactDetail.name}

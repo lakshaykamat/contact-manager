@@ -6,7 +6,7 @@ import NumbersIcon from "@mui/icons-material/Numbers";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Form = ({ name, number,alert,setAlert, handleChange, handleContactList }) => {
+const Form = ({ name, number,alert, handleChange, handleContactList }) => {
   return (
     <Stack
       spacing={3}
