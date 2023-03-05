@@ -2,6 +2,7 @@ import { Card, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { Link } from "react-router-dom";
+import img  from '../../public/anime.jpg'
 
 const ContactCard = ({ name, number }) => {
   return (
@@ -11,7 +12,7 @@ const ContactCard = ({ name, number }) => {
       <Stack direction={"row"} alignItems={"center"}>
         <img
           style={{ borderRadius: "50%", maxWidth: "15%" }}
-          src="/public/anime.jpg"
+          src={img}
         />
         <Stack direction={"column"} spacing={"3"} sx={{ margin: "1rem" }}>
           <Typography variant="h5">{name}</Typography>

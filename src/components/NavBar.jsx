@@ -27,7 +27,7 @@ export default function Navbar({status,path,icon}) {
           <Link to={path} style={{color:'white'}} >
           <Button color="inherit">
             {icon}
-            {status}
+            {/* {status} */}
             </Button>
           </Link>
         </Toolbar>
