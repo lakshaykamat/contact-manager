@@ -1,12 +1,27 @@
-import { Alert, Button, InputAdornment, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Stack } from "@mui/system";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonIcon from "@mui/icons-material/Person";
 import NumbersIcon from "@mui/icons-material/Numbers";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
-const Form = ({ name, number,alert, handleChange, handleContactList }) => {
+const Form = ({
+  name,
+  number,
+  images,
+  alert,
+  handleChange,
+  handleContactList,
+  setImg,
+}) => {
   return (
     <Stack
       spacing={3}
@@ -20,6 +35,7 @@ const Form = ({ name, number,alert, handleChange, handleContactList }) => {
       </Typography>
 
       <TextField
+        size="small"
         onChange={handleChange}
         name="name"
         error={name.length >= 1 ? false : true}
@@ -40,6 +56,7 @@ const Form = ({ name, number,alert, handleChange, handleContactList }) => {
       />
 
       <TextField
+        size="small"
         onChange={handleChange}
         error={number.length >= 1 && number.length == 10 ? false : true}
         helperText={
@@ -65,18 +82,24 @@ const Form = ({ name, number,alert, handleChange, handleContactList }) => {
         }}
       />
 
+      {/* If number length is not eqal to 10 nor greaeter than 0 then disabled the button*/}
       {
         <Button
           onClick={handleContactList}
           variant="contained"
-          size="large"
+          size="small"
           disabled={number.length == 10 && name.length > 0 ? false : true}
         >
           <PersonAddIcon sx={{ marginRight: ".7rem" }} />
           Add to Contacts
         </Button>
       }
-      {alert && <Alert severity="success" variant="filled">Added to List</Alert>}
+
+      {alert && (
+        <Alert severity="success" variant="filled">
+          Added to List
+        </Alert>
+      )}
     </Stack>
   );
 };

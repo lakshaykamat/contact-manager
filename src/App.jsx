@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import ContactCard from "./components/ContactCard";
 import ContactPage from "./components/ContactPage";
 import Form from "./components/Form";
 import Navbar from "./components/NavBar";
 import ListIcon from "@mui/icons-material/List";
 import AddIcon from "@mui/icons-material/Add";
+import { imgaes } from "./assets/img";
 
 function App() {
   const [contactList, setContactList] = useState([]);
@@ -15,9 +14,6 @@ function App() {
     number: "",
   });
   const [alert, setAlert] = useState(false);
-  function handleAlert() {
-    setAlert(true);
-  }
   function handleChange(e) {
     setContactDetail((prevDetail) => {
       return {
@@ -47,7 +43,6 @@ function App() {
               <Navbar
                 icon={<ListIcon />}
                 path={"/contacts"}
-                status="Show Contacts"
               />
               <Form
                 alert={alert}
@@ -64,7 +59,7 @@ function App() {
           exact
           element={
             <>
-              <Navbar icon={<AddIcon />} path={"/"} status="Add" />
+              <Navbar icon={<AddIcon />} path={"/"} />
               <ContactPage contacts={contactList} />
             </>
           }
