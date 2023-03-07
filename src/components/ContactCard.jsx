@@ -1,9 +1,9 @@
 import { Card, Typography } from "@mui/material";
 import {  Stack } from "@mui/system";
 import React from "react";
-import img  from '../../public/anime.jpg'
 
-const ContactCard = ({ name, number }) => {
+const ContactCard = ({ name, number,img }) => {
+
   return (
     <Card
       sx={{ padding: ".2rem 1.2rem",margin:'1rem auto', maxWidth: "400px" }}

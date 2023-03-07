@@ -16,11 +16,12 @@ import React from "react";
 const Form = ({
   name,
   number,
-  images,
+  imagesData,
   alert,
   handleChange,
   handleContactList,
-  setImg,
+  handleImageClick,
+  selectedImage
 }) => {
   return (
     <Stack
@@ -33,7 +34,22 @@ const Form = ({
       <Typography variant="h3" sx={{ textAlign: "center" }}>
         Contact Manager
       </Typography>
+      {/* ****************Image ****************/}
+      <Stack maxWidth={'sm'} marginX={2} justifyContent={'center'}>
+        <Typography variant="h5" textAlign={'start'}>Select Image</Typography>
 
+      <Grid container  spacing={2} justifyContent={'center'} marginTop={3}> 
+        {imagesData.map((item, index) => {
+          return <Grid item   key={index}><img  style={{
+            border:  selectedImage &&   selectedImage.id === item.id ? '5px solid green'  : 'none',
+            boxSizing:'border-box',
+            borderRadius:"50%",
+            width:'80px'
+          }}  src={item.url} onClick={() => handleImageClick(item)} /></Grid>
+        })}
+      </Grid>
+      </Stack>
+      {/* ****************Image*************** */}
       <TextField
         size="small"
         onChange={handleChange}

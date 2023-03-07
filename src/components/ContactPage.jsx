@@ -9,10 +9,12 @@ const ContactPage = (props) => {
         {props.contacts.length === 0 && <Typography textAlign={'center'} variant='h4'>No Contacts Added</Typography>}
       </Stack>
         {props.contacts.map((item,index)=>{
+
             return <ContactCard 
             key={index} 
             name={item.name}
-            number={item.number} />
+            number={item.number}
+            img={item.img ? item.img : "https://i.pinimg.com/564x/d4/74/1c/d4741cb779ddec6509ca1ae0cb137a7d.jpg"} />
         })}
     </div>
   )

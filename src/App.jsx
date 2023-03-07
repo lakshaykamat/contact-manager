@@ -5,15 +5,17 @@ import Form from "./components/Form";
 import Navbar from "./components/NavBar";
 import ListIcon from "@mui/icons-material/List";
 import AddIcon from "@mui/icons-material/Add";
-import { imgaes } from "./assets/img";
+import { imgaesData } from "./assets/ImageData";
 
 function App() {
+  const [alert, setAlert] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [contactList, setContactList] = useState([]);
   const [contactDetail, setContactDetail] = useState({
     name: "",
     number: "",
+    img: undefined,
   });
-  const [alert, setAlert] = useState(false);
   function handleChange(e) {
     setContactDetail((prevDetail) => {
       return {
@@ -22,16 +24,27 @@ function App() {
       };
     });
   }
+
   function handleContactList() {
     setAlert(true)
+    setSelectedImage(null)
     setInterval(() => {
       setAlert(false)
     },2000);
     setContactList((prevList) => {
       return [...prevList, contactDetail];
     });
-    setContactDetail({ name: "", number: "" });
+    setContactDetail({ name: "", number: "" ,img:""});
   }
+  const handleImageClick = (image) => {
+    setContactDetail((prevDetail) => {
+      return {
+        ...prevDetail,
+        img: image.url,
+      };
+    });
+setSelectedImage(image)
+  };
   return (
     <div>
       <Routes>
@@ -40,12 +53,12 @@ function App() {
           exact
           element={
             <>
-              <Navbar
-                icon={<ListIcon />}
-                path={"/contacts"}
-              />
+              <Navbar icon={<ListIcon />} path={"/contacts"} />
               <Form
+                imagesData={imgaesData}
                 alert={alert}
+                selectedImage={selectedImage}
+                handleImageClick={handleImageClick}
                 handleContactList={handleContactList}
                 handleChange={handleChange}
                 name={contactDetail.name}
