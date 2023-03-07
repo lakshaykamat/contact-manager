@@ -35,16 +35,16 @@ const Form = ({
         Contact Manager
       </Typography>
       {/* ****************Image ****************/}
-      <Stack maxWidth={'sm'} marginX={2} justifyContent={'center'}>
-        <Typography variant="h5" textAlign={'start'}>Select Image</Typography>
+      <Stack maxWidth={'sm'}  justifyContent={'center'}>
+        <Typography variant="h5" textAlign={'start'} marginX={2}>Select Image</Typography>
 
-      <Grid container  spacing={2} justifyContent={'center'} marginTop={3}> 
+      <Grid container  columnGap={2} justifyContent={'center'} marginTop={3}> 
         {imagesData.map((item, index) => {
           return <Grid item   key={index}><img  style={{
-            border:  selectedImage &&   selectedImage.id === item.id ? '5px solid green'  : 'none',
+            border:  selectedImage &&   selectedImage.id === item.id ? '3px solid green'  : 'none',
             boxSizing:'border-box',
             borderRadius:"50%",
-            width:'80px'
+            width:'50px'
           }}  src={item.url} onClick={() => handleImageClick(item)} /></Grid>
         })}
       </Grid>
